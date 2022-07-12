@@ -10,9 +10,6 @@ public class HomePage {
     }
 
     public LogInPage logIn(String username, String password) {
-        if (!driver.getTitle().contains("Inbox — Yandex Mail")) {
-            driver.get(YandexConstants.YANDEX_MAIL_LINK);
-        }
         driver.findElement(YandexConstants.LOGIN_OPTION).click();
         driver.findElement(YandexConstants.USERNAME_INPUT).sendKeys(username);
         driver.findElement(YandexConstants.LOGIN_BUTTON).click();
