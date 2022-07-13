@@ -1,28 +1,36 @@
 package com.coherensolutions.traning.automation.java.web.urnezaite;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LogInPage {
     WebDriver driver;
-    WebElement userIcon;
-    WebElement mailIcon;
-    WebElement composeButton;
+    public final By ACCOUNT_NAME = By.cssSelector("span.user-account__name");
+    public final By INBOX = By.xpath("//span[text() = 'Inbox']");
+    public final By COMPOSE_BUTTON = By.cssSelector("a[href='#compose']");
+    public final By USER_OPTIONS_LOCATOR = By.cssSelector("a.user-account.user-account_left-name");
+    public final By LOGOUT_BUTTON = By.xpath("//span[contains(text(),'Log out')]");
 
     public LogInPage(WebDriver driver) {
         this.driver = driver;
-        this.userIcon = driver.findElement(YandexConstants.USERNAME_LOCATOR);
-        this.mailIcon = driver.findElement(YandexConstants.MAIL_ICON);
-        this.composeButton = driver.findElement(YandexConstants.COMPOSE_BUTTON);
     }
 
     public LogOutPage logOut() {
-        clickUsersOption();
-        driver.findElement(YandexConstants.LOGOUT_BUTTON).click();
+        driver.findElement(USER_OPTIONS_LOCATOR).click();
+        driver.findElement(LOGOUT_BUTTON).click();
         return new LogOutPage(driver);
     }
 
-    private void clickUsersOption() {
-        driver.findElement(YandexConstants.USER_OPTIONS_LOCATOR).click();
+    public boolean isAccountNameDisplayed() {
+        return driver.findElement(ACCOUNT_NAME).isDisplayed();
+    }
+
+    public boolean isInboxDisplayed() {
+        return driver.findElement(INBOX).isDisplayed();
+    }
+
+    public boolean isComposeButtonEnabled() {
+        return driver.findElement(COMPOSE_BUTTON).isEnabled();
     }
 }

@@ -9,24 +9,25 @@ import java.time.Duration;
 
 public class LogInTest {
     WebDriver driver;
+    public final String YANDEX_MAIL_LINK = "https://mail.yandex.com/";
 
     @BeforeTest
     public void setUp() {
         driver = new ChromeDriver();
+        driver.get(YANDEX_MAIL_LINK);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.manage().window().maximize();
     }
 
     @Parameters({"username", "password"})
     @Test
-    public void logInTest(@Optional("selenium.test.account2") String username, @Optional("seleniumtestaccount2") String password) {
-        driver.get(YandexConstants.YANDEX_MAIL_LINK);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        driver.manage().window().maximize();
+    public void testLogIn(@Optional("selenium.test.account2") String username, @Optional("seleniumtestaccount2") String password) {
         HomePage homePage = new HomePage(driver);
         LogInPage logInPage = homePage.logIn(username, password);
 
-        Assert.assertEquals(logInPage.userIcon.getText(), username, "users logo has incorrect username");
-        Assert.assertTrue(logInPage.mailIcon.isDisplayed(), "email icon is not displayed");
-        Assert.assertTrue(logInPage.composeButton.isEnabled(), "compose button is not enabled");
+        Assert.assertTrue(logInPage.isInboxDisplayed(), "inbox icon is not displayed");
+        Assert.assertTrue(logInPage.isAccountNameDisplayed(), "users account name is not displayed");
+        Assert.assertTrue(logInPage.isComposeButtonEnabled(), "compose button is not enabled");
     }
 
     @AfterTest
