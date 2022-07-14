@@ -7,41 +7,26 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LogInPage {
     private WebDriver driver;
-    @FindBy(css = "span.user-account__name")
-    private WebElement userAccountName;
+    @FindBy(css = "input[id='passp-field-login']")
+    private WebElement usernameInput;
 
-    @FindBy(xpath = "//span[text() = 'Inbox']")
-    private WebElement inbox;
+    @FindBy(xpath = "//button[@id='passp:sign-in']")
+    private WebElement loginButton;
 
-    @FindBy(css = "a[href='#compose']")
-    private WebElement composeButton;
-
-    @FindBy(css = "a.user-account.user-account_left-name")
-    private WebElement userOptions;
-
-    @FindBy(xpath = "//span[contains(text(),'Log out')]")
-    private WebElement logOutButton;
+    @FindBy(css = "input#passp-field-passwd")
+    private WebElement passwordInput;
 
     public LogInPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public LogOutPage logOut() {
-        userOptions.click();
-        logOutButton.click();
-        return new LogOutPage(driver);
-    }
 
-    public boolean isInboxDisplayed() {
-        return inbox.isDisplayed();
-    }
-
-    public boolean isComposeButtonEnabled() {
-        return composeButton.isEnabled();
-    }
-
-    public String getAccountName() {
-        return userAccountName.getText();
+    public InboxPage logIn(String username, String password) {
+        usernameInput.sendKeys(username);
+        loginButton.click();
+        passwordInput.sendKeys(password);
+        loginButton.click();
+        return new InboxPage(driver);
     }
 }

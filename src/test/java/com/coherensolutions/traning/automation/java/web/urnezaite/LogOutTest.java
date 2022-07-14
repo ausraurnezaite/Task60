@@ -22,10 +22,11 @@ public class LogOutTest {
     public void logOutTest(@Optional("selenium.test.account2") String username, @Optional("seleniumtestaccount2") String password) {
         HomePage homePage = new HomePage(driver);
         homePage.load();
-        LogInPage logInPage = homePage.logIn(username, password);
-        LogOutPage logOutPage = logInPage.logOut();
+        LogInPage logInPage = homePage.chooseLogInOption();
+        InboxPage inboxPage = logInPage.logIn(username, password);
+        HomePage homePageAfterLoggingOut = inboxPage.logOut();
 
-        Assert.assertTrue(logOutPage.isLoggedOut(), "'log in' or 'create an account' button should be displayed after the log out");
+        Assert.assertTrue(homePageAfterLoggingOut.isLoggedOut(), "'log in' or 'create an account' button should be displayed after the log out");
     }
 
     @AfterTest

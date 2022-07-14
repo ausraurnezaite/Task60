@@ -2,27 +2,17 @@ package com.coherensolutions.traning.automation.java.web.urnezaite;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.time.Duration;
-
 public class HomePage {
-    private WebDriver driver;
     private final String YANDEX_MAIL_LINK = "https://mail.yandex.com/";
+    private WebDriver driver;
 
     @FindBy(partialLinkText = "Log in")
-    private WebElement loginOption;
-
-    @FindBy(css = "input[id='passp-field-login']")
-    private WebElement usernameInput;
-
-    @FindBy(xpath = "//button[@id='passp:sign-in']")
-    private WebElement loginButton;
-
-    @FindBy(css = "input#passp-field-passwd")
-    private WebElement passwordInput;
+    private WebElement logInOption;
+    @FindBy(xpath = "//span[text() = 'Create an account']")
+    private WebElement createAccountOption;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -33,13 +23,12 @@ public class HomePage {
         driver.get(YANDEX_MAIL_LINK);
     }
 
-
-    public LogInPage logIn(String username, String password) {
-        loginOption.click();
-        usernameInput.sendKeys(username);
-        loginButton.click();
-        passwordInput.sendKeys(password);
-        loginButton.click();
+    public LogInPage chooseLogInOption() {
+        logInOption.click();
         return new LogInPage(driver);
+    }
+
+    public boolean isLoggedOut() {
+        return logInOption.isDisplayed() && createAccountOption.isDisplayed();
     }
 }

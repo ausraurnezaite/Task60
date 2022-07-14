@@ -22,11 +22,12 @@ public class LogInTest {
     public void testLogIn(@Optional("selenium.test.account2") String username, @Optional("seleniumtestaccount2") String password) {
         HomePage homePage = new HomePage(driver);
         homePage.load();
-        LogInPage logInPage = homePage.logIn(username, password);
+        LogInPage logInPage = homePage.chooseLogInOption();
+        InboxPage inboxPage = logInPage.logIn(username, password);
 
-        Assert.assertTrue(logInPage.isInboxDisplayed(), "inbox icon is not displayed");
-        Assert.assertTrue(logInPage.isComposeButtonEnabled(), "compose button is not enabled");
-        Assert.assertEquals(logInPage.getAccountName(), username, "users account name is not displayed correctly");
+        Assert.assertTrue(inboxPage.isInboxDisplayed(), "inbox icon is not displayed");
+        Assert.assertTrue(inboxPage.isComposeButtonEnabled(), "compose button is not enabled");
+        Assert.assertEquals(inboxPage.getAccountName(), username, "users account name is not displayed correctly");
     }
 
     @AfterTest

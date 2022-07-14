@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Yandex Tests">
-    <parameter name="username" value="selenium.test.account2"/>
-    <parameter name="password" value="seleniumtestaccount2"/>
+    <parameter name="username" value="selenium.test.account"/>
+    <parameter name="password" value="SeleniumTestAccount"/>
     <test name="Log In Test">
         <classes>
             <class name="com.coherensolutions.traning.automation.java.web.urnezaite.LogInTest"/>
