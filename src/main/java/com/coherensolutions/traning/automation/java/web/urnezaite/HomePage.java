@@ -24,8 +24,8 @@ public class HomePage {
     @FindBy(css = "input#passp-field-passwd")
     WebElement passwordInput;
 
-    public HomePage() {
-        driver = new ChromeDriver();
+    public HomePage(WebDriver driver) {
+        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
