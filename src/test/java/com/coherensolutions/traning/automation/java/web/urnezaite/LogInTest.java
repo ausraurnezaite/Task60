@@ -1,10 +1,15 @@
 package com.coherensolutions.traning.automation.java.web.urnezaite;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 public class LogInTest {
@@ -19,9 +24,17 @@ public class LogInTest {
 
     @Parameters({"username", "password"})
     @Test
-    public void testLogIn(@Optional("selenium.test.account2") String username, @Optional("seleniumtestaccount2") String password) {
+    public void testLogIn(@Optional("selenium.test.account") String username, @Optional("SeleniumTestAccount") String password) {
         HomePage homePage = new HomePage(driver);
         homePage.load();
+
+        try {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("screenshots/homePage.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         LogInPage logInPage = homePage.chooseLogInOption();
         InboxPage inboxPage = logInPage.logIn(username, password);
 
