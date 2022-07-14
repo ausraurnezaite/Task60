@@ -7,11 +7,11 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LogOutPage {
 
-    WebDriver driver;
+    private WebDriver driver;
     @FindBy(xpath = "//span[text() = 'Log in']")
-    WebElement logInOption;
+    private WebElement logInOption;
     @FindBy(xpath = "//span[text() = 'Create an account']")
-    WebElement createAccountOption;
+    private WebElement createAccountOption;
 
     public LogOutPage(WebDriver driver) {
         this.driver = driver;
@@ -21,5 +21,4 @@ public class LogOutPage {
     public boolean isLoggedOut() {
         return logInOption.isDisplayed() && createAccountOption.isDisplayed();
     }
-
 }

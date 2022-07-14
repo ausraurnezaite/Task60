@@ -2,7 +2,6 @@ package com.coherensolutions.traning.automation.java.web.urnezaite;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -10,19 +9,19 @@ import java.time.Duration;
 
 public class HomePage {
     private WebDriver driver;
-    final String YANDEX_MAIL_LINK = "https://mail.yandex.com/";
+    private final String YANDEX_MAIL_LINK = "https://mail.yandex.com/";
 
     @FindBy(partialLinkText = "Log in")
-    WebElement loginOption;
+    private WebElement loginOption;
 
     @FindBy(css = "input[id='passp-field-login']")
-    WebElement usernameInput;
+    private WebElement usernameInput;
 
     @FindBy(xpath = "//button[@id='passp:sign-in']")
-    WebElement loginButton;
+    private WebElement loginButton;
 
     @FindBy(css = "input#passp-field-passwd")
-    WebElement passwordInput;
+    private WebElement passwordInput;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;

@@ -6,21 +6,21 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LogInPage {
-    WebDriver driver;
+    private WebDriver driver;
     @FindBy(css = "span.user-account__name")
-    WebElement userAccountName;
+    private WebElement userAccountName;
 
     @FindBy(xpath = "//span[text() = 'Inbox']")
-    WebElement inbox;
+    private WebElement inbox;
 
     @FindBy(css = "a[href='#compose']")
-    WebElement composeButton;
+    private WebElement composeButton;
 
     @FindBy(css = "a.user-account.user-account_left-name")
-    WebElement userOptions;
+    private WebElement userOptions;
 
     @FindBy(xpath = "//span[contains(text(),'Log out')]")
-    WebElement logOutButton;
+    private WebElement logOutButton;
 
     public LogInPage(WebDriver driver) {
         this.driver = driver;
