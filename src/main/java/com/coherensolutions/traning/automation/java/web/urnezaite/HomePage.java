@@ -10,34 +10,29 @@ import java.time.Duration;
 
 public class HomePage {
     private WebDriver driver;
-    final String YANDEX_MAIL_LINK = "https://mail.yandex.com/";
+    private final String YANDEX_MAIL_LINK = "https://mail.yandex.com/";
 
     @FindBy(partialLinkText = "Log in")
-    WebElement loginOption;
+    private WebElement loginOption;
 
     @FindBy(css = "input[id='passp-field-login']")
-    WebElement usernameInput;
+    private WebElement usernameInput;
 
     @FindBy(xpath = "//button[@id='passp:sign-in']")
-    WebElement loginButton;
+    private WebElement loginButton;
 
     @FindBy(css = "input#passp-field-passwd")
-    WebElement passwordInput;
+    private WebElement passwordInput;
 
-    public HomePage() {
-        driver = new ChromeDriver();
+    public HomePage(WebDriver driver) {
+        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     public void load() {
         driver.get(YANDEX_MAIL_LINK);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        driver.manage().window().maximize();
     }
 
-    public void close() {
-        driver.close();
-    }
 
     public LogInPage logIn(String username, String password) {
         loginOption.click();
