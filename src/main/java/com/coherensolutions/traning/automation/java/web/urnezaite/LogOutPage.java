@@ -1,9 +1,7 @@
 package com.coherensolutions.traning.automation.java.web.urnezaite;
 
-import com.coherensolutions.traning.automation.java.web.urnezaite.YandexConstants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class LogOutPage {
 
