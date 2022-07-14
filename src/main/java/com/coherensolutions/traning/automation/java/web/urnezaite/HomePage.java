@@ -1,19 +1,17 @@
-package com.coherensolutions.traning.automation.java.web.urnezaite.pageObjects;
+package com.coherensolutions.traning.automation.java.web.urnezaite;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.LoadableComponent;
-import org.testng.Assert;
 
 import java.time.Duration;
 
 public class HomePage {
     private WebDriver driver;
+    final String YANDEX_MAIL_LINK = "https://mail.yandex.com/";
 
-    final String TITLE = "Yandex.Mail — free, reliable email";
     @FindBy(partialLinkText = "Log in")
     WebElement loginOption;
 
@@ -26,8 +24,19 @@ public class HomePage {
     @FindBy(css = "input#passp-field-passwd")
     WebElement passwordInput;
 
-    public HomePage(WebDriver driver) {
+    public HomePage() {
+        driver = new ChromeDriver();
         PageFactory.initElements(driver, this);
+    }
+
+    public void load() {
+        driver.get(YANDEX_MAIL_LINK);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.manage().window().maximize();
+    }
+
+    public void close() {
+        driver.close();
     }
 
     public LogInPage logIn(String username, String password) {
@@ -36,6 +45,6 @@ public class HomePage {
         loginButton.click();
         passwordInput.sendKeys(password);
         loginButton.click();
-        return PageFactory.initElements(driver, LogInPage.class);
+        return new LogInPage(driver);
     }
 }
