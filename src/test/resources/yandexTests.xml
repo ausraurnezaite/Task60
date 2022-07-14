@@ -4,9 +4,9 @@
     <parameter name="username" value="selenium.test.account"/>
     <parameter name="password" value="SeleniumTestAccount"/>
 
-    <listeners>
-        <listener class-name="com.coherensolutions.traning.automation.java.web.urnezaite.ITestListenerClass"/>
-    </listeners>
+<!--    <listeners>-->
+<!--        <listener class-name="com.coherensolutions.traning.automation.java.web.urnezaite.ITestListenerClass"/>-->
+<!--    </listeners>-->
     <test name="Log In Test">
         <classes>
             <class name="com.coherensolutions.traning.automation.java.web.urnezaite.LogInTest"/>

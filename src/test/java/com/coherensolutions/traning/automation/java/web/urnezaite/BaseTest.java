@@ -9,6 +9,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Listeners(ITestListenerClass.class)
 public class BaseTest {
     public static WebDriver driver;
     public static String screenshotsSubFolderName;
@@ -23,7 +25,7 @@ public class BaseTest {
     @BeforeTest
     public void setUp() {
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
     }
 
